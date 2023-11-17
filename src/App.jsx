@@ -1,5 +1,7 @@
 import React from 'react';
-import './App.css'; // Importa el archivo CSS
+import './App.css';
+import { Link } from 'react-router-dom';
+
 
 function App() {
   return (
@@ -10,7 +12,8 @@ function App() {
           <a href="#inicio">Inicio</a>
           <a href="#caracteristicas">Características</a>
           <a href="#contacto">Contacto</a>
-        </nav>
+          <Link to="/login">Iniciar Sesión</Link> {/* Usa Link en lugar de <a> */}
+</nav>
       </header>
       <main>
         <section id="inicio" className="inicio">
