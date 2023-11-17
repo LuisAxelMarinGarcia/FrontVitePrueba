@@ -12,7 +12,7 @@ function App() {
           <a href="#inicio">Inicio</a>
           <a href="#caracteristicas">Características</a>
           <a href="#contacto">Contacto</a>
-          <Link to="/login">Iniciar Sesión</Link> {/* Usa Link en lugar de <a> */}
+          <Link to="/login">Iniciar Sesión</Link> 
 </nav>
       </header>
       <main>

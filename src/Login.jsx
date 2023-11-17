@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './login.css';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -9,12 +10,14 @@ const Login = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    console.log('Enviando:', { email, password });
     try {
       const response = await axios.post('http://localhost:33060/login', {
         email: email,
         password: password
       });
       console.log('Respuesta del servidor:', response.data.message);
+      window.location.href = '/';
     } catch (err) {
       setError(err.response ? err.response.data.message : 'Error en el servidor');
     }
@@ -46,7 +49,7 @@ const Login = () => {
           {error && <p className="error">{error}</p>}
           <button type="submit">Iniciar Sesión</button>
         </form>
-        <p>¿No tienes una cuenta? Regístrate</p>
+        <Link to="/register">Registrate</Link> 
       </div>
     </div>
   );
