@@ -1,13 +1,23 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import './login.css';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log('Iniciando sesión con:', email, password);
+    try {
+      const response = await axios.post('http://localhost:33060/login', {
+        email: email,
+        password: password
+      });
+      console.log('Respuesta del servidor:', response.data.message);
+    } catch (err) {
+      setError(err.response ? err.response.data.message : 'Error en el servidor');
+    }
   };
 
   return (
@@ -33,6 +43,7 @@ const Login = () => {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
+          {error && <p className="error">{error}</p>}
           <button type="submit">Iniciar Sesión</button>
         </form>
         <p>¿No tienes una cuenta? Regístrate</p>
